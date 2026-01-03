@@ -1,0 +1,6 @@
+.signup {
+  max-width: 360px;
+  margin: 24px auto;
+}
+label { display: block; margin: 8px 0; }
+input { width: 100%; padding: 8px; box-sizing: border-box }

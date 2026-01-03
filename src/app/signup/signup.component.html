@@ -1,0 +1,72 @@
+<div class="signup">
+  <h2>Sign Up</h2>
+  
+  <div *ngIf="errorMessage" class="alert alert-error">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Username Field -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input 
+        type="text" 
+        id="username" 
+        formControlName="username"
+        placeholder="Enter username (min 3 characters)"
+      />
+      <div *ngIf="submitted && username?.errors" class="error">
+        <span *ngIf="username?.errors?.['required']">Username is required</span>
+        <span *ngIf="username?.errors?.['minlength']">Username must be at least 3 characters</span>
+      </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        formControlName="email"
+        placeholder="Enter valid email"
+      />
+      <div *ngIf="submitted && email?.errors" class="error">
+        <span *ngIf="email?.errors?.['required']">Email is required</span>
+        <span *ngIf="email?.errors?.['email']">Invalid email format</span>
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        formControlName="password"
+        placeholder="Enter password (min 8 characters)"
+      />
+      <div *ngIf="submitted && password?.errors" class="error">
+        <span *ngIf="password?.errors?.['required']">Password is required</span>
+        <span *ngIf="password?.errors?.['minlength']">Password must be at least 8 characters</span>
+      </div>
+    </div>
+
+    <!-- Role Field -->
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select id="role" formControlName="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+        <option value="manager">Manager</option>
+      </select>
+      <div *ngIf="submitted && role?.errors" class="error">
+        <span *ngIf="role?.errors?.['required']">Role is required</span>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="loading || (submitted && signupForm.invalid)">
+      {{ loading ? 'Creating Account...' : 'Create Account' }}
+    </button>
+  </form>
+</div>
