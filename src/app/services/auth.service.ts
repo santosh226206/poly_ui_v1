@@ -3,11 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface SignupPayload {
-  id: string;
   username: string;
   email: string;
   password: string;
-  role: string;
+  role: any;
 }
 
 export interface SignupResponse {
@@ -16,15 +15,44 @@ export interface SignupResponse {
   data?: any;
 }
 
+export interface SigninPayload {
+  username: string;
+  password: string;
+}
+
+export interface SigninResponse {
+  token: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8081/users'; // Update with your API URL
+  private tokenKey = 'auth_token';
 
   constructor(private http: HttpClient) { }
 
   signup(payload: SignupPayload): Observable<SignupResponse> {
-    return this.http.post<SignupResponse>(`${this.apiUrl}/saveUser`, payload);
+    return this.http.post<SignupResponse>(`/users/saveUser`, payload);
+  }
+
+  signin(payload: SigninPayload): Observable<SigninResponse> {
+    return this.http.post<SigninResponse>(`/auth/login`, payload);
+  }
+
+  storeToken(token: string) {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
+  logout(): void {
+    localStorage.removeItem(this.tokenKey);
   }
 }

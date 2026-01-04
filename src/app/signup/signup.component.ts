@@ -35,14 +35,12 @@ export class SignupComponent {
 
     if (this.signupForm.valid) {
       this.loading = true;
-      const userId = uuidv4();
 
       const payload: SignupPayload = {
-        id: userId,
         username: this.signupForm.get('username')?.value,
         email: this.signupForm.get('email')?.value,
         password: this.signupForm.get('password')?.value,
-        role: this.signupForm.get('role')?.value
+        role: [this.signupForm.get('role')?.value]
       };
 
       console.log('Submitting with UUID:', payload);

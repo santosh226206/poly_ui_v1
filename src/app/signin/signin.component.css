@@ -1,0 +1,7 @@
+.signin-container { max-width: 420px; margin: 24px auto; padding: 12px; }
+label { display: block; margin-bottom: 4px; }
+input { width: 100%; padding: 8px; margin-bottom: 8px; box-sizing: border-box; }
+.error { color: #b00020; }
+.actions { margin-top: 12px; }
+button { padding: 8px 12px; }
+.error-message { color: #b00020; margin-top: 8px; }
