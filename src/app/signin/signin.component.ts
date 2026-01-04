@@ -49,7 +49,7 @@ export class SigninComponent {
             this.authService.storeToken(response.token);
             this.loginForm.reset();
             this.submitted = false;
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/home']);
           } else {
             this.errorMessage = 'No token received from server.';
           }

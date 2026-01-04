@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-home',
   standalone: true,
-  imports: [],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+  imports: [CommonModule],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
 })
-export class DashboardComponent {
+export class HomeComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   logout() {
